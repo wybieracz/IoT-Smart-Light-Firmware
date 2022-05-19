@@ -7,7 +7,7 @@
 #include <az_iot.h>
 #include <string>
 
-#include "AzIoTConfig.h"
+#include "AzIoTConfigOffline.h"
 #include "AzIoTMethodHandlers.h"
 #include "AzIoTSasToken.h"
 #include "SerialLogger.h"

@@ -110,7 +110,11 @@ esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
       Logger.Info("Data: " + String(incoming_data));
 
       if(String(direct_method_name).equals("toggleLed")){
-        toggleLed(incoming_data[0] - 48) ? status = 200 : status = 400;
+        toggleLed(incoming_data[1]) ? status = 200 : status = 400;
+      }
+      else if(String(direct_method_name).equals("setColor")){
+        setColor(incoming_data) ? status = 200 : status = 400;
+
       }
       else {
         status = 404;
@@ -127,7 +131,6 @@ esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
       Logger.Error("MQTT event UNKNOWN");
       break;
   }
-
   return ESP_OK;
 }
 

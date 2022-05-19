@@ -12,6 +12,8 @@ void setup() {
   initializeTime();
   initializeIoTHubClient();
   (void)initializeMqttClient();
+  initializeLightDetector();
+  initializeLedController();
 }
 
 void loop() {
@@ -21,4 +23,7 @@ void loop() {
     connectToWiFi();
   }
   else checkSession();
+
+  readLightValue();
+  delay(100);
 }

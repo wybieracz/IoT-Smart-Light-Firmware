@@ -1,0 +1,23 @@
+#ifndef LEDCONTROLLER_H
+#define LEDCONTROLLER_H
+
+#include "Adafruit_NeoPixel.h"
+#include "LightDetector.h"
+#include <Arduino.h>
+
+#define DIN 27
+#define RGB_LEDS 8
+#define LED_GREEN 32
+
+extern int R, G, B;
+extern bool isEnabled, isChanged;
+
+extern Adafruit_NeoPixel pixels;
+
+void initializeLedController();
+void writeToLeds();
+void turnOnOffLeds(bool turnOn);
+void nextStep();
+void setBrightness();
+
+#endif //LEDCONTROLLER_H
