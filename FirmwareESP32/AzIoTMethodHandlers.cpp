@@ -5,12 +5,10 @@ bool toggleLed(int value) {
     value -= 48;
     
     if(value == 1) {
-        digitalWrite(LED_GREEN, HIGH);
         turnOnOffLeds(true);
         return true;
     }
     if(value == 0) {
-        digitalWrite(LED_GREEN, LOW);
         turnOnOffLeds(false);
         return true;
     }
@@ -44,4 +42,23 @@ bool setColor(char* ptr) {
         return true;
     }
     else return false;
+}
+
+bool setMode(int value) {
+
+    value -= 48;
+    
+    if(value == 1) {
+        autoMode = true;
+        digitalWrite(LED_GREEN, HIGH);
+        return true;
+    }
+    if(value == 0) {
+        autoMode = false;
+        digitalWrite(LED_GREEN, LOW);
+        isChanged = true;
+        writeToLeds();
+        return true;
+    }
+    return false;
 }

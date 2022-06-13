@@ -6,5 +6,6 @@
 
 bool toggleLed(int value);
 bool setColor(char* ptr);
+bool setMode(int value);
 
 #endif //AZIOTMETHODHANDLERS_H

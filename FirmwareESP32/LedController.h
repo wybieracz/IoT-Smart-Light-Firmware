@@ -5,7 +5,7 @@
 #include "LightDetector.h"
 #include <Arduino.h>
 
-#define DIN 27
+#define DIN 2
 #define RGB_LEDS 8
 #define LED_GREEN 32
 
@@ -17,7 +17,6 @@ extern Adafruit_NeoPixel pixels;
 void initializeLedController();
 void writeToLeds();
 void turnOnOffLeds(bool turnOn);
-void nextStep();
 void setBrightness();
 
 #endif //LEDCONTROLLER_H

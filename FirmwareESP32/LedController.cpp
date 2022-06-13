@@ -18,7 +18,6 @@ void initializeLedController() {
     isEnabled = true;
     isChanged = true;
 
-    digitalWrite(LED_GREEN, HIGH);
     writeToLeds();
 }
 
@@ -28,7 +27,6 @@ void writeToLeds() {
 
         for(int i = 0; i < RGB_LEDS; i++) {
             
-            Serial.println(i);
             pixels.setPixelColor(i, pixels.Color(R, G, B));
             pixels.show();
         }
@@ -49,40 +47,42 @@ void turnOnOffLeds(bool turnOn) {
     }
 }
 
-void nextStep() {
-
-    if(G < 255) G++;
-    else if(R < 255) R++;
-    else if(B < 255) B++;
-    else {
-        R = 0;
-        G = 0;
-        B = 0;
-    }
-}
-
 void setBrightness() {
 
-    int realR, realG, realB;
-    float normalizedValue = lightValue / 4095 - 1;
+    if(isLightChanged) {
 
-    if(lightValue < 2048) {
+        int realR, realG, realB;
+        float normalizedValue;
 
-        realR = R + (255 - R) * normalizedValue;
-        realG = G + (255 - G) * normalizedValue;
-        realB = B + (255 - B) * normalizedValue;
+        isLightChanged = false;
 
-    } else {
+        if(lightValue < 2048) {
+
+        normalizedValue = lightValue / 2048;
 
         realR = R * normalizedValue;
         realG = G * normalizedValue;
         realB = B * normalizedValue;
-    }
 
-    for(int i = 0; i < RGB_LEDS; i++) {
+        if(realR < 5) realR = 0;
+        if(realG < 5) realG = 0;
+        if(realB < 5) realB = 0;
 
-        Serial.println(i);
-        pixels.setPixelColor(i, pixels.Color(R, G, B));
-        pixels.show();
+        }
+
+        if(lightValue >= 2048) {
+
+            normalizedValue = lightValue / 2048 - 1;
+
+            realR = R + (255 - R) * normalizedValue;
+            realG = G + (255 - G) * normalizedValue;
+            realB = B + (255 - B) * normalizedValue;
+        }
+
+        for(int i = 0; i < RGB_LEDS; i++) {
+
+            pixels.setPixelColor(i, pixels.Color(realR, realG, realB));
+            pixels.show();
+        }
     }
 }

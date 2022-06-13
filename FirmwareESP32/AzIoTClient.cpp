@@ -114,7 +114,9 @@ esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
       }
       else if(String(direct_method_name).equals("setColor")){
         setColor(incoming_data) ? status = 200 : status = 400;
-
+      }
+      else if(String(direct_method_name).equals("setMode")){
+        setMode(incoming_data[1]) ? status = 200 : status = 400;
       }
       else {
         status = 404;

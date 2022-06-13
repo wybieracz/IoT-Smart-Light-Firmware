@@ -24,6 +24,9 @@ void loop() {
   }
   else checkSession();
 
-  readLightValue();
-  delay(100);
+  if(autoMode && isEnabled) {
+    readLightValue();
+    setBrightness();
+    delay(10);
+  }
 }
