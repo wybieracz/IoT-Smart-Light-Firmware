@@ -11,7 +11,7 @@ static AzIoTSasToken sasToken(
   AZ_SPAN_FROM_BUFFER(mqtt_password)
 );
 
-static void sendResponse(az_span rid, uint16_t status) {
+static void sendResponse(az_span rid, uint16_t status, char * payload) {
 
   if (az_result_failed(az_iot_hub_client_methods_response_get_publish_topic(
     &client, rid, status, response_topic, sizeof(response_topic), NULL))) {
@@ -22,7 +22,7 @@ static void sendResponse(az_span rid, uint16_t status) {
   if (esp_mqtt_client_publish(
       mqtt_client,
       response_topic,
-      NULL,
+      payload,
       0,
       MQTT_QOS1,
       DO_NOT_RETAIN_MSG) == -1
@@ -111,18 +111,24 @@ esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
 
       if(String(direct_method_name).equals("toggleLed")){
         toggleLed(incoming_data[1]) ? status = 200 : status = 400;
+        sendResponse(az_span_create_from_str(ptr), status, NULL);
       }
       else if(String(direct_method_name).equals("setColor")){
         setColor(incoming_data) ? status = 200 : status = 400;
+        sendResponse(az_span_create_from_str(ptr), status, NULL);
       }
       else if(String(direct_method_name).equals("setMode")){
         setMode(incoming_data[1]) ? status = 200 : status = 400;
+        sendResponse(az_span_create_from_str(ptr), status, NULL);
+      }
+      else if(String(direct_method_name).equals("getStatus")){
+        getStatus(response_data) ? status = 200 : status = 400;
+        sendResponse(az_span_create_from_str(ptr), status, response_data);
       }
       else {
         status = 404;
       }
       Logger.Info("Code: " + String(status));
-      sendResponse(az_span_create_from_str(ptr), status);
       break;
 
     case MQTT_EVENT_BEFORE_CONNECT:

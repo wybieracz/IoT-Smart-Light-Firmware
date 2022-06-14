@@ -62,3 +62,33 @@ bool setMode(int value) {
     }
     return false;
 }
+
+bool getStatus(char* ptr) {
+
+    if(!ptr) return false;
+
+    ptr += 13;
+    *ptr = isEnabled + 48;
+    ptr += 13;
+    *ptr = autoMode + 48;
+    ptr += 6;
+    *ptr = R / 100 + 48;
+    ptr++;
+    *ptr = (R % 100) / 10 + 48;
+    ptr++;
+    *ptr = R % 10 + 48;
+    ptr += 6;
+    *ptr = G / 100 + 48;
+    ptr++;
+    *ptr = (G % 100) / 10 + 48;
+    ptr++;
+    *ptr = G % 10 + 48;
+    ptr += 6;
+    *ptr = B / 100 + 48;
+    ptr++;
+    *ptr = (B % 100) / 10 + 48;
+    ptr++;
+    *ptr = B % 10 + 48;
+
+    return true;
+}
