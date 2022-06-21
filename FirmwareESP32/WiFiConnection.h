@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include "SerialLogger.h"
-#include "AzIoTConfigOffline.h"
+#include "AzIoTConfig.h"
 
 #define LED_RED 25
 

@@ -7,7 +7,7 @@
 #include <az_iot.h>
 #include <string>
 
-#include "AzIoTConfigOffline.h"
+#include "AzIoTConfig.h"
 #include "AzIoTMethodHandlers.h"
 #include "AzIoTSasToken.h"
 #include "SerialLogger.h"
@@ -23,7 +23,7 @@
 static char incoming_data[INCOMING_DATA_BUFFER_SIZE];
 static char direct_method_name[DIRECT_METHOD_NAME_SIZE];
 static char response_topic[INCOMING_DATA_BUFFER_SIZE];
-static char response_data[] = "{\"isEnabled\":0,\"autoMode\":0,\"R\":000,\"G\":000,\"B\":000}";
+static char response_data[] = "{\"isEnabled\":0,\"autoMode\":0,\"R\":\"000\",\"G\":\"000\",\"B\":\"000\"}";
 
 static const char* host = IOT_CONFIG_IOTHUB_FQDN;
 static const char* mqtt_broker_uri = "mqtts://" IOT_CONFIG_IOTHUB_FQDN;
