@@ -5269,8 +5269,8 @@ DIN A4, landscape with location and doc. field</description>
 <sheets>
 <sheet>
 <plain>
-<text x="292.1" y="-45.72" size="2.54" layer="94">PSC-F Project</text>
-<text x="292.1" y="-50.8" size="2.1844" layer="94">IoT Sterowanie światłem</text>
+<text x="292.1" y="-45.72" size="2.54" layer="94">IoT Smart Light Project</text>
+<text x="292.1" y="-50.8" size="1.778" layer="94">Silesian University of Technology</text>
 <text x="292.1" y="-55.88" size="1.27" layer="94">K. Bryś, M. Pawłowski, A. Wołoszyn</text>
 <text x="238.76" y="-58.42" size="1.6764" layer="94">-ESP32 microcontroller
 -Photo sensor

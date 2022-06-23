@@ -44,7 +44,7 @@ The aim of the project was to design remotely controlled device which emits RGB 
 * Enter Wi-Fi credentials, network name `IOT_CONFIG_WIFI_SSID` and password `IOT_CONFIG_WIFI_PASSWORD`.
 * In IoT Hub open `Overview` to show hostname.
 * Enter cloud hostname `IOT_CONFIG_IOTHUB_FQDN`.
-* In IoT Hub open `Devices > Add Device > Your Device Name` to show cloud device credentials.
+* In IoT Hub open `Devices > Your Device Name` to show cloud device credentials.
 * Enter cloud device credentials, Device ID `IOT_CONFIG_DEVICE_ID` and Primary Key `IOT_CONFIG_DEVICE_KEY`.
 7. Build and upload programme to ESP-32.
 8. Use Smart Ligth app to controll your device.
